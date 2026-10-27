@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Yu | Personal Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pdf: {
+                            bg: '#fcb08b',        /* Uniform Page Background */
+                            card: '#f79f72',      /* Warm Harmonized Tint Card */
+                            cardLight: '#FFFDF5', /* Highlight Card Cream Background */
+                            red: '#D00000',       /* Bold Crimson Red from PDF */
+                            redHover: '#A00000',
+                            text: '#2B231D',      /* Deep Charcoal Text */
+                            muted: '#6B5E55',     /* Muted Warm Brown */
+                            border: '#E8D5B5',    /* Vintage Accent Border */
+                            yellow: '#FFD700'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Noto Serif SC', 'serif'],
+                        calligraphy: ['Ma Shan Zheng', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fcb08b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D00000;
+            border-radius: 4px;
+        }
+
+        /* Typewriter Cursor Animation */
+        .typewriter-cursor::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+            color: #D00000;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Hover Zoom Scale for Cards/Images (Excluding Hero Photo) */
+        .zoom-hover {
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.35s ease;
+        }
+        .zoom-hover:hover {
+            transform: scale(1.04);
+        }
+
+        /* Running Horses Keyframe Animations (Changed to infinite loop) */
+        @keyframes horseRunLeft {
+            0% { transform: translateX(-110%); opacity: 0; }
+            30% { opacity: 1; }
+            100% { transform: translateX(0%); opacity: 1; }
+        }
+
+        @keyframes horseRunRight {
+            0% { transform: translateX(110%); opacity: 0; }
+            30% { opacity: 1; }
+            100% { transform: translateX(0%); opacity: 1; }
+        }
+
+        .horse-anim-left {
+            animation: horseRunLeft 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+        }
+        .horse-anim-right {
+            animation: horseRunRight 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+        }
+
+        /* Subtle Pulse Animation for Have a Try link */
+        @keyframes subtlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .pulse-subtle {
+            animation: subtlePulse 2.5s ease-in-out infinite;
+        }
+
+        /* Pin Pulse for Map */
+        @keyframes mapPinPulse {
+            0% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.5); opacity: 0.3; }
+            100% { transform: scale(1); opacity: 0.9; }
+        }
+        .map-pulse {
+            animation: mapPinPulse 2s infinite ease-in-out;
+        }
+
+        /* Travel Map Hover Gallery Slider Styling */
+        .travel-map-container .travel-gallery-overlay {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .travel-map-container:hover .travel-gallery-overlay,
+        .travel-map-container:focus-within .travel-gallery-overlay {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-[#fcb08b] text-pdf-text font-sans antialiased selection:bg-pdf-red selection:text-white">
+
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#fcb08b]/90 backdrop-blur-md border-b border-pdf-border/60 py-4 px-6 md:px-12 transition-all">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-black font-serif text-pdf-red tracking-tight hover:opacity-85 transition-opacity">
+                An Yu.
+            </a>
+            <div class="flex items-center space-x-6 sm:space-x-8 text-xs sm:text-sm font-bold tracking-wide uppercase text-pdf-text/80">
+                <a href="#about" class="hover:text-pdf-red transition-colors">About Me</a>
+                <a href="#traveler" class="hover:text-pdf-red transition-colors">Traveler</a>
+                <a href="#projects" class="hover:text-pdf-red transition-colors">Project</a>
+                <a href="#pooper-scooper" class="hover:text-pdf-text transition-colors">Pooper Scooper</a>
+                <a href="#language" class="hover:text-pdf-red transition-colors">Language Learner</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero" class="min-h-screen pt-24 pb-12 px-6 md:px-12 flex flex-col justify-center items-center max-w-7xl mx-auto">
+        <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center min-h-[calc(100vh-8rem)]">
+            
+            <!-- Left Column: Larger typography and shifted right with padding -->
+            <div class="md:col-span-6 lg:col-span-6 space-y-7 text-left py-6 md:pl-8 lg:pl-12">
+                <div class="inline-flex items-center space-x-2 px-4 py-2 bg-pdf-red/10 border border-pdf-red/20 rounded-full text-pdf-red font-bold text-sm uppercase tracking-wider">
+                    <span>🎓 MSc Student @ HKPolyU</span>
+                </div>
+                
+                <!-- Larger Printing Title -->
+                <h1 class="text-6xl sm:text-7xl lg:text-8xl font-black text-pdf-red font-serif leading-tight tracking-tight min-h-[160px] sm:min-h-[190px] flex items-center">
+                    <span id="typewriter-title" class="typewriter-cursor"></span>
+                </h1>
+
+                <div class="pt-3 space-y-3">
+                    <p class="text-base font-extrabold uppercase tracking-widest text-pdf-muted">Email Contact</p>
+                    <a href="mailto:aviva.an@connect.polyu.hk" class="inline-flex items-center space-x-3 px-0 py-1 transition-all group">
+                        <i class="fa-regular fa-envelope text-pdf-red text-2xl group-hover:scale-110 transition-transform"></i>
+                        <span class="text-base sm:text-lg lg:text-xl font-extrabold text-pdf-red tracking-wide">aviva.an@connect.polyu.hk</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Column Photo Asset: An Yu Photo (Taller height & sleek presentation) -->
+            <div class="md:col-span-6 lg:col-span-6 h-full flex items-center justify-center">
+                <div class="relative w-full h-[85vh] min-h-[560px] max-h-[820px] rounded-3xl overflow-hidden shadow-2xl bg-pdf-card group">
+                    <img src="/Users/avivaan/Desktop/website/An Yu.png" alt="An Yu Photo" class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105" onerror="this.onerror=null; this.src='website/An Yu.png';">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="about" class="py-20 px-6 md:px-12 bg-pdf-cardLight/40 border-y border-pdf-border/80">
+        <div class="max-w-4xl mx-auto text-center space-y-10">
+            
+            <div>
+                <h2 class="text-3xl md:text-5xl font-black font-serif text-pdf-text inline-block relative">
+                    About Me
+                    <span class="block h-1.5 bg-pdf-red w-16 mx-auto mt-3 rounded-full"></span>
+                </h2>
+            </div>
+
+            <!-- PDF Bio Text -->
+            <p class="text-lg md:text-xl text-pdf-text/90 font-serif leading-relaxed max-w-3xl mx-auto">
+                With eight years of experience in art education, I am currently pursuing an MSc in Generative AI and the Humanities at The Hong Kong Polytechnic University. Moving forward, I aim to combine AI with creative practice further to explore art and the innovative transformation of traditional culture.
+            </p>
+
+            <!-- Interactive Tag Pills Triggered on Scroll -->
+            <div id="role-tags-bar" class="pt-6 flex flex-wrap justify-center items-center gap-4 opacity-0 transition-all duration-700 transform translate-y-10">
+                
+                <!-- AI Explorer 标签 (点击跳转到 Project) -->
+                <a href="#projects" class="px-6 py-3 bg-pdf-cardLight hover:bg-pdf-red border-2 border-pdf-red text-pdf-red hover:text-white font-black rounded-full shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center space-x-2">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    <span>AI Explorer</span>
+                </a>
+
+                <span class="text-pdf-red font-black hidden sm:inline">|</span>
+
+                <a href="#traveler" class="px-6 py-3 bg-pdf-cardLight hover:bg-pdf-red border-2 border-pdf-red text-pdf-red hover:text-white font-black rounded-full shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center space-x-2">
+                    <i class="fa-solid fa-plane-departure"></i>
+                    <span>Traveler</span>
+                </a>
+
+                <span class="text-pdf-red font-black hidden sm:inline">|</span>
+
+                <a href="#pooper-scooper" class="px-6 py-3 bg-pdf-cardLight hover:bg-pdf-red border-2 border-pdf-red text-pdf-red hover:text-white font-black rounded-full shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center space-x-2">
+                    <i class="fa-solid fa-paw"></i>
+                    <span>Pooper scooper</span>
+                </a>
+
+                <span class="text-pdf-red font-black hidden sm:inline">|</span>
+
+                <a href="#language" class="px-6 py-3 bg-pdf-cardLight hover:bg-pdf-red border-2 border-pdf-red text-pdf-red hover:text-white font-black rounded-full shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex items-center space-x-2">
+                    <i class="fa-solid fa-comments"></i>
+                    <span>Language Learner</span>
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 px-6 md:px-12 max-w-6xl mx-auto">
+        <div id="project-card-container" class="bg-[#fdf6ef] rounded-3xl border-2 border-pdf-border p-8 md:p-12 shadow-xl zoom-hover relative min-h-[500px] flex flex-col justify-between overflow-hidden">
+            
+            <!-- Grid Layout matching wireframe & layout instructions -->
+            <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                
+                <!-- Left Column: Title directly above h1.png -->
+                <div class="md:col-span-5 flex flex-col items-center md:items-start text-center md:text-left space-y-4">
+                    <!-- Title Text placed directly above h1.png -->
+                    <div class="space-y-1">
+                        <h2 class="text-4xl md:text-6xl font-black text-pdf-red tracking-tight font-sans leading-none">Project</h2>
+                        <p class="text-lg md:text-xl font-bold text-pdf-red font-sans pt-1">Yunnan Jiama Cyber Wishing Website</p>
+                    </div>
+
+                    <!-- Left Image (h1.png) with running animation -->
+                    <div id="h1-horse-container" class="w-full max-w-[280px] sm:max-w-[320px] pt-2 opacity-0">
+                        <img src="website/h1.png" alt="Horse Rider Left" class="w-full h-auto object-contain" onerror="this.onerror=null; this.src='/Users/avivaan/Desktop/website/h1.png'; this.onerror=function(){this.src='https://placehold.co/400x300/fdf6ef/d00000?text=h1.png'};">
+                    </div>
+                </div>
+
+                <!-- Center Column: 1.svg & Have a Try! Text Link -->
+                <div class="md:col-span-3 flex flex-col items-center justify-center space-y-6 self-center my-auto">
+                    <!-- Center SVG (website/1.svg) -->
+                    <div class="w-36 h-44 md:w-44 md:h-52 p-1 flex items-center justify-center">
+                        <img src="/Users/avivaan/Desktop/website/1.svg" alt="好人相逢" class="w-full h-full object-contain" onerror="this.parentElement.innerHTML='<div class=\'border-4 border-pdf-red p-4 text-pdf-red font-calligraphy text-3xl font-black text-center\'>好人相逢</div>'">
+                    </div>
+
+                    <!-- Clean Single-Line Text Link with Subtle Zoom & Hover Effect for Have a Try! -->
+                    <a href="https://avivaan0811-droid.github.io/ciber-wishing/" target="_blank" rel="noopener noreferrer" class="group inline-block transform hover:scale-110 active:scale-95 transition-all duration-300">
+                        <span class="pulse-subtle inline-block text-xl md:text-2xl font-extrabold text-pdf-red underline underline-offset-8 decoration-2 group-hover:text-pdf-redHover transition-colors whitespace-nowrap">
+                            Have a Try !
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Right Column: h2.png with running animation aligned to Top Right of the card -->
+                <div class="md:col-span-4 flex justify-center md:justify-end items-start w-full">
+                    <div id="h2-horse-container" class="w-full max-w-[260px] sm:max-w-[300px] opacity-0">
+                        <img src="website/h2.png" alt="Horse Rider Right" class="w-full h-auto object-contain" onerror="this.onerror=null; this.src='/Users/avivaan/Desktop/website/h2.png'; this.onerror=function(){this.src='https://placehold.co/400x300/fdf6ef/d00000?text=h2.png'};">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="traveler" class="py-24 px-6 md:px-12 max-w-6xl mx-auto">
+        <!-- White Main Card container matching Project card style -->
+        <div class="bg-[#fdf6ef] rounded-3xl border-2 border-pdf-border p-8 md:p-12 shadow-xl zoom-hover relative flex flex-col justify-between">
+            
+            <!-- Top Header Inside Card: Traveler Title and Subtitle -->
+            <div class="w-full flex flex-col items-start space-y-1 mb-6">
+                <h2 class="text-4xl md:text-6xl font-black text-pdf-red tracking-tight font-sans leading-none">Traveler</h2>
+                <p class="text-lg md:text-xl font-bold text-pdf-red font-sans pt-1">Keep exploring on the road......</p>
+            </div>
+
+            <!-- map.jpeg container with interactive location hotspots & popups -->
+            <div id="interactive-travel-map" class="w-full rounded-2xl relative flex items-center justify-center border border-pdf-border/40 select-none bg-[#f5e8d8]/30">
+                <!-- Main World Map Image -->
+                <img src="website/map.jpeg" alt="Traveler World Map" class="w-full h-auto object-contain max-h-[650px] block rounded-2xl" onerror="this.onerror=null; this.src='/Users/avivaan/Desktop/website/map.jpeg'; this.onerror=function(){this.src='https://placehold.co/1200x675/fdf6ef/d00000?text=map.jpeg'}">
+
+                <!-- Dynamic Hint Badge -->
+                <div class="absolute top-4 right-4 bg-pdf-red/90 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg backdrop-blur-sm pointer-events-none flex items-center space-x-2 z-20">
+                    <i class="fa-solid fa-location-dot animate-bounce"></i>
+                    <span>Hover pins to view photo moments 📍</span>
+                </div>
+
+                <!-- HOTSPOT 1: China (中国) -->
+                <div class="absolute group/pin z-20 hover:z-40" style="top: 48%; left: 75%;" data-images='["/Users/avivaan/Desktop/website/China/杭州.jpg", "/Users/avivaan/Desktop/website/China/泉州.jpg","/Users/avivaan/Desktop/website/China/景德镇.jpg", "/Users/avivaan/Desktop/website/China/甘肃.jpg", "/Users/avivaan/Desktop/website/China/甘肃 2.jpg", "/Users/avivaan/Desktop/website/China/Yunnan 1.JPG", "/Users/avivaan/Desktop/website/China/Yunnan 2.JPG"]'>
+                    <button class="relative flex items-center justify-center w-8 h-8 -translate-x-1/2 -translate-y-1/2 focus:outline-none">
+                        <span class="absolute w-6 h-6 bg-pdf-red/40 rounded-full animate-ping"></span>
+                        <span class="relative w-4 h-4 bg-pdf-red border-2 border-white rounded-full shadow-md transform group-hover/pin:scale-125 transition-transform"></span>
+                    </button>
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover/pin:opacity-100 pointer-events-none group-hover/pin:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover/pin:translate-y-0 w-48 sm:w-56 bg-white rounded-2xl p-2.5 shadow-2xl border-2 border-pdf-border z-30">
+                        <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-pdf-card mb-2 border border-pdf-border/40">
+                            <img src="/Users/avivaan/Desktop/website/China/杭州.jpg" alt="China" class="w-full h-full object-cover transition-all duration-500">
+                        </div>
+                        <div class="text-left px-1">
+                            <p class="text-xs font-black text-pdf-red uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-location-dot"></i> China
+                            </p>
+                            <p class="text-[11px] font-bold text-pdf-text/80">🏠💖</p>
+                        </div>
+                        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-r-2 border-b-2 border-pdf-border rotate-45"></div>
+                    </div>
+                </div>
+
+                <!-- HOTSPOT 2: Spain (西班牙) -->
+                <div class="absolute group/pin z-20 hover:z-40" style="top: 41%; left: 47%;" data-images='["/Users/avivaan/Desktop/website/Spain/S1.jpg", "/Users/avivaan/Desktop/website/Spain/S2.jpg", "/Users/avivaan/Desktop/website/Spain/S3.jpg", "/Users/avivaan/Desktop/website/Spain/S4.jpg"]'>
+                    <button class="relative flex items-center justify-center w-8 h-8 -translate-x-1/2 -translate-y-1/2 focus:outline-none">
+                        <span class="absolute w-6 h-6 bg-pdf-red/40 rounded-full animate-ping"></span>
+                        <span class="relative w-4 h-4 bg-pdf-red border-2 border-white rounded-full shadow-md transform group-hover/pin:scale-125 transition-transform"></span>
+                    </button>
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 opacity-0 group-hover/pin:opacity-100 pointer-events-none group-hover/pin:pointer-events-auto transition-all duration-300 transform -translate-y-2 group-hover/pin:translate-y-0 w-48 sm:w-56 bg-white rounded-2xl p-2.5 shadow-2xl border-2 border-pdf-border z-30">
+                        <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l-2 border-t-2 border-pdf-border rotate-45"></div>
+                        <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-pdf-card mb-2 border border-pdf-border/40">
+                            <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=600&q=80" alt="Spain" class="w-full h-full object-cover transition-all duration-500">
+                        </div>
+                        <div class="text-left px-1">
+                            <p class="text-xs font-black text-pdf-red uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-location-dot"></i> Spain
+                            </p>
+                            <p class="text-[11px] font-bold text-pdf-text/80">Madrid & Barcelona</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HOTSPOT 3: Italy (意大利) -->
+                <div class="absolute group/pin z-20 hover:z-40" style="top: 40%; left: 52%;" data-images='["/Users/avivaan/Desktop/website/Italy/I 1.jpg", "/Users/avivaan/Desktop/website/Italy/I2.jpg", "/Users/avivaan/Desktop/website/Italy/I3.jpg"]'>
+                    <button class="relative flex items-center justify-center w-8 h-8 -translate-x-1/2 -translate-y-1/2 focus:outline-none">
+                        <span class="absolute w-6 h-6 bg-pdf-red/40 rounded-full animate-ping"></span>
+                        <span class="relative w-4 h-4 bg-pdf-red border-2 border-white rounded-full shadow-md transform group-hover/pin:scale-125 transition-transform"></span>
+                    </button>
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 opacity-0 group-hover/pin:opacity-100 pointer-events-none group-hover/pin:pointer-events-auto transition-all duration-300 transform -translate-y-2 group-hover/pin:translate-y-0 w-48 sm:w-56 bg-white rounded-2xl p-2.5 shadow-2xl border-2 border-pdf-border z-30">
+                        <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l-2 border-t-2 border-pdf-border rotate-45"></div>
+                        <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-pdf-card mb-2 border border-pdf-border/40">
+                            <img src="/Users/avivaan/Desktop/website/Italy/I2.jpg" alt="Italy" class="w-full h-full object-cover transition-all duration-500">
+                        </div>
+                        <div class="text-left px-1">
+                            <p class="text-xs font-black text-pdf-red uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-location-dot"></i> Italy
+                            </p>
+                            <p class="text-[11px] font-bold text-pdf-text/80">Rome & Florence</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HOTSPOT 4: French (法国) -->
+                <div class="absolute group/pin z-20 hover:z-40" style="top: 30%; left: 49%;" data-images='["/Users/avivaan/Desktop/website/French/F1.jpg"]'>
+                    <button class="relative flex items-center justify-center w-8 h-8 -translate-x-1/2 -translate-y-1/2 focus:outline-none">
+                        <span class="absolute w-6 h-6 bg-pdf-red/40 rounded-full animate-ping"></span>
+                        <span class="relative w-4 h-4 bg-pdf-red border-2 border-white rounded-full shadow-md transform group-hover/pin:scale-125 transition-transform"></span>
+                    </button>
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 opacity-0 group-hover/pin:opacity-100 pointer-events-none group-hover/pin:pointer-events-auto transition-all duration-300 transform -translate-y-2 group-hover/pin:translate-y-0 w-48 sm:w-56 bg-white rounded-2xl p-2.5 shadow-2xl border-2 border-pdf-border z-30">
+                        <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l-2 border-t-2 border-pdf-border rotate-45"></div>
+                        <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-pdf-card mb-2 border border-pdf-border/40">
+                            <img src="/Users/avivaan/Desktop/website/French/F1.jpg" alt="French" class="w-full h-full object-cover transition-all duration-500">
+                        </div>
+                        <div class="text-left px-1">
+                            <p class="text-xs font-black text-pdf-red uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-location-dot"></i> French
+                            </p>
+                            <p class="text-[11px] font-bold text-pdf-text/80">Paris</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HOTSPOT 5: Russia (俄罗斯) -->
+                <div class="absolute group/pin z-20 hover:z-40" style="top: 28%; left: 66%;" data-images='["/Users/avivaan/Desktop/website/russia/Russia.jpeg", "/Users/avivaan/Desktop/website/russia/Russia 2.JPG", "/Users/avivaan/Desktop/website/russia/Russia 3.jpg", "/Users/avivaan/Desktop/website/russia/Russia 4.jpg"]'>
+                    <button class="relative flex items-center justify-center w-8 h-8 -translate-x-1/2 -translate-y-1/2 focus:outline-none">
+                        <span class="absolute w-6 h-6 bg-pdf-red/40 rounded-full animate-ping"></span>
+                        <span class="relative w-4 h-4 bg-pdf-red border-2 border-white rounded-full shadow-md transform group-hover/pin:scale-125 transition-transform"></span>
+                    </button>
+                    <div class="absolute top-full left-1/2 -translate-x-1/2 mt-3 opacity-0 group-hover/pin:opacity-100 pointer-events-none group-hover/pin:pointer-events-auto transition-all duration-300 transform -translate-y-2 group-hover/pin:translate-y-0 w-48 sm:w-56 bg-white rounded-2xl p-2.5 shadow-2xl border-2 border-pdf-border z-30">
+                        <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-l-2 border-t-2 border-pdf-border rotate-45"></div>
+                        <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-pdf-card mb-2 border border-pdf-border/40">
+                            <img src="/Users/avivaan/Desktop/website/Russia.jpeg" alt="Russia" class="w-full h-full object-cover transition-all duration-500">
+                        </div>
+                        <div class="text-left px-1">
+                            <p class="text-xs font-black text-pdf-red uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-location-dot"></i> Russia
+                            </p>
+                            <p class="text-[11px] font-bold text-pdf-text/80">Moscow & Saint Petersburg & Murmansk</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HOTSPOT 6: Indonesia (印度尼西亚) -->
+                <div class="absolute group/pin z-20 hover:z-40" style="top: 62%; left: 79%;" data-images='["/Users/avivaan/Desktop/website/Indonisia/Indonisia.JPG", "/Users/avivaan/Desktop/website/Indonisia/Indonisia 2.jpg", "/Users/avivaan/Desktop/website/Indonisia/Indonisia 3.jpg"]'>
+                    <button class="relative flex items-center justify-center w-8 h-8 -translate-x-1/2 -translate-y-1/2 focus:outline-none">
+                        <span class="absolute w-6 h-6 bg-pdf-red/40 rounded-full animate-ping"></span>
+                        <span class="relative w-4 h-4 bg-pdf-red border-2 border-white rounded-full shadow-md transform group-hover/pin:scale-125 transition-transform"></span>
+                    </button>
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover/pin:opacity-100 pointer-events-none group-hover/pin:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover/pin:translate-y-0 w-48 sm:w-56 bg-white rounded-2xl p-2.5 shadow-2xl border-2 border-pdf-border z-30">
+                        <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-pdf-card mb-2 border border-pdf-border/40">
+                            <img src="/Users/avivaan/Desktop/website/Indonisia/Indonisia 2.jpg" alt="Indonesia" class="w-full h-full object-cover transition-all duration-500">
+                        </div>
+                        <div class="text-left px-1">
+                            <p class="text-xs font-black text-pdf-red uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-location-dot"></i> Indonesia
+                            </p>
+                            <p class="text-[11px] font-bold text-pdf-text/80">Java island & Bali</p>
+                        </div>
+                        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-r-2 border-b-2 border-pdf-border rotate-45"></div>
+                    </div>
+                </div>
+
+                <!-- HOTSPOT 7: Japan (日本) -->
+                <div class="absolute group/pin z-20 hover:z-40" style="top: 45%; left: 82%;" data-images='["/Users/avivaan/Desktop/website/Japan/Japan.JPG", "/Users/avivaan/Desktop/website/Japan/Japan 2.jpg", "/Users/avivaan/Desktop/website/Japan/Japan 3.jpg"]'>
+                    <button class="relative flex items-center justify-center w-8 h-8 -translate-x-1/2 -translate-y-1/2 focus:outline-none">
+                        <span class="absolute w-6 h-6 bg-pdf-red/40 rounded-full animate-ping"></span>
+                        <span class="relative w-4 h-4 bg-pdf-red border-2 border-white rounded-full shadow-md transform group-hover/pin:scale-125 transition-transform"></span>
+                    </button>
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover/pin:opacity-100 pointer-events-none group-hover/pin:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover/pin:translate-y-0 w-48 sm:w-56 bg-white rounded-2xl p-2.5 shadow-2xl border-2 border-pdf-border z-30">
+                        <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-pdf-card mb-2 border border-pdf-border/40">
+                            <img src="/Users/avivaan/Desktop/website/Japan/Japan.JPG" alt="Japan" class="w-full h-full object-cover transition-all duration-500">
+                        </div>
+                        <div class="text-left px-1">
+                            <p class="text-xs font-black text-pdf-red uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-location-dot"></i> Japan
+                            </p>
+                            <p class="text-[11px] font-bold text-pdf-text/80">Kyoto & Osaka & Hokkaido</p>
+                        </div>
+                        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-r-2 border-b-2 border-pdf-border rotate-45"></div>
+                    </div>
+                </div>
+
+                <!-- HOTSPOT 8: Dubai (迪拜) -->
+                <div class="absolute group/pin z-20 hover:z-40" style="top: 52%; left: 60%;" data-images='["/Users/avivaan/Desktop/website/Dubai/DUBAI 1.jpg", "/Users/avivaan/Desktop/website/Dubai/Dubai 2.jpg", "/Users/avivaan/Desktop/website/Dubai/Dubai 3.jpg"]'>
+                    <button class="relative flex items-center justify-center w-8 h-8 -translate-x-1/2 -translate-y-1/2 focus:outline-none">
+                        <span class="absolute w-6 h-6 bg-pdf-red/40 rounded-full animate-ping"></span>
+                        <span class="relative w-4 h-4 bg-pdf-red border-2 border-white rounded-full shadow-md transform group-hover/pin:scale-125 transition-transform"></span>
+                    </button>
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover/pin:opacity-100 pointer-events-none group-hover/pin:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover/pin:translate-y-0 w-48 sm:w-56 bg-white rounded-2xl p-2.5 shadow-2xl border-2 border-pdf-border z-30">
+                        <div class="w-full aspect-[4/3] rounded-xl overflow-hidden bg-pdf-card mb-2 border border-pdf-border/40">
+                            <img src="/Users/avivaan/Desktop/website/Dubai/DUBAI 1.jpg" alt="Dubai" class="w-full h-full object-cover transition-all duration-500">
+                        </div>
+                        <div class="text-left px-1">
+                            <p class="text-xs font-black text-pdf-red uppercase tracking-wider flex items-center gap-1">
+                                <i class="fa-solid fa-location-dot"></i> Dubai
+                            </p>
+                            <p class="text-[11px] font-bold text-pdf-text/80">sea</p>
+                        </div>
+                        <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-r-2 border-b-2 border-pdf-border rotate-45"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="pooper-scooper" class="py-24 px-6 md:px-12 bg-pdf-cardLight/40 border-y border-pdf-border/80">
+        <div class="max-w-6xl mx-auto space-y-12">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4">
+                <div class="inline-flex items-center space-x-2 text-pdf-red font-black text-xs uppercase tracking-widest bg-pdf-red/10 px-3 py-1 rounded-full">
+                    <i class="fa-solid fa-paw"></i>
+                    <span>Pet Companion</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black font-serif text-pdf-text text-center">Pooper Scooper</h2>
+                <p class="text-lg text-pdf-text/90 leading-relaxed font-serif text-center">
+                    Four years ago, I adopted a male Schnauzer named <strong>Cinnamon</strong>, who absolutely adores sweet potatoes. These days, he's hard at work staying in shape. Unlike many Schnauzers, he came to me already with cropped ears and a docked tail. I strongly believe every animal should be allowed to keep their natural form.
+                </p>
+            </div>
+
+            <!-- Cinnamon Photos Gallery (R1.PNG, R2.PNG, R3.PNG) without captions -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="bg-pdf-cardLight rounded-3xl border-2 border-pdf-border p-4 shadow-lg zoom-hover">
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-pdf-card border border-pdf-border">
+                        <img src="website/R1.PNG" alt="Cinnamon R1" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='/Users/avivaan/Desktop/website/R1.PNG'; this.onerror=function(){this.src='https://placehold.co/400x400/f79f72/ffffff?text=R1.PNG'}">
+                    </div>
+                </div>
+
+                <div class="bg-pdf-cardLight rounded-3xl border-2 border-pdf-border p-4 shadow-lg zoom-hover">
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-pdf-card border border-pdf-border">
+                        <img src="website/R2.PNG" alt="Cinnamon R2" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='/Users/avivaan/Desktop/website/R2.PNG'; this.onerror=function(){this.src='https://placehold.co/400x400/f79f72/ffffff?text=R2.PNG'}">
+                    </div>
+                </div>
+
+                <div class="bg-pdf-cardLight rounded-3xl border-2 border-pdf-border p-4 shadow-lg zoom-hover">
+                    <div class="aspect-square rounded-2xl overflow-hidden bg-pdf-card border border-pdf-border">
+                        <img src="website/R3.PNG" alt="Cinnamon R3" class="w-full h-full object-cover object-center" onerror="this.onerror=null; this.src='/Users/avivaan/Desktop/website/R3.PNG'; this.onerror=function(){this.src='https://placehold.co/400x400/f79f72/ffffff?text=R3.PNG'}">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section id="language" class="py-20 px-6 md:px-12 max-w-6xl mx-auto">
+        <div class="bg-pdf-cardLight rounded-3xl p-8 md:p-12 border-2 border-pdf-border shadow-xl flex flex-col md:flex-row items-center justify-between gap-8 zoom-hover">
+            
+            <div class="space-y-4 max-w-2xl">
+                <span class="text-xs font-black uppercase tracking-widest text-pdf-red bg-pdf-red/10 px-3.5 py-1.5 rounded-full">
+                    🗣️ Cantonese Journal
+                </span>
+                <h2 class="text-3xl md:text-4xl font-black font-serif text-pdf-text">Language Learner</h2>
+                <p class="text-pdf-text/90 text-base md:text-lg leading-relaxed font-serif">
+                    I'm from Zhejiang and currently learning Cantonese. If you're learning too or if you'd like to help correct my pronunciation, welcome to follow my Cantonese Weekly Journal!
+                </p>
+            </div>
+
+            <!-- Xiaohongshu Image & Follow Link Container -->
+            <div class="shrink-0 flex flex-col items-center space-y-4">
+                <!-- Xiaohongshu Image -->
+                <div class="w-40 sm:w-48 max-w-full rounded-2xl overflow-hidden border-2 border-pdf-border shadow-md">
+                    <img src="website/xiaohongshu.png" alt="Xiaohongshu QR / Profile" class="w-full h-auto object-contain" onerror="this.onerror=null; this.src='/Users/avivaan/Desktop/website/xiaohongshu.png'; this.onerror=function(){this.src='https://placehold.co/300x300/fdf6ef/d00000?text=xiaohongshu.png'}">
+                </div>
+
+                <!-- Follow Button Link -->
+                <a href="https://xhslink.cn/o/2lNSseR9tcG" target="_blank" rel="noopener noreferrer" class="px-8 py-3.5 bg-pdf-red hover:bg-pdf-redHover text-white font-extrabold rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center space-x-3">
+                    <i class="fa-solid fa-heart"></i>
+                    <span>Follow with me !</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-6 text-center text-sm text-pdf-muted border-t border-pdf-border bg-[#fcb08b]">
+        <p>© 2026 An Yu | MSc Generative AI & Humanities, HKPolyU</p>
+    </footer>
+
+    <script>
+        // 1. Typewriter Animation for "Hi I'm An Yu!" (无限循环打字与退格)
+        const titleText = "Hi I'm\nAn Yu !";
+        const titleContainer = document.getElementById('typewriter-title');
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function runTypewriter() {
+            if (!isDeleting && charIndex <= titleText.length) {
+                const currentStr = titleText.substring(0, charIndex);
+                titleContainer.innerHTML = currentStr.replace(/\n/g, '<br>');
+                charIndex++;
+                if (charIndex > titleText.length) {
+                    isDeleting = true;
+                    setTimeout(runTypewriter, 2500); // 打印完整后停留 2.5 秒
+                    return;
+                }
+                setTimeout(runTypewriter, 110);
+            } else if (isDeleting && charIndex >= 0) {
+                const currentStr = titleText.substring(0, charIndex);
+                titleContainer.innerHTML = currentStr.replace(/\n/g, '<br>');
+                charIndex--;
+                if (charIndex < 0) {
+                    isDeleting = false;
+                    charIndex = 0;
+                    setTimeout(runTypewriter, 500); // 退格清空后停留 0.5 秒重新开始
+                    return;
+                }
+                setTimeout(runTypewriter, 60);
+            }
+        }
+
+        // 2. Scroll Trigger for Tag Pills in About Me
+        const tagsBar = document.getElementById('role-tags-bar');
+        const tagsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tagsBar.classList.remove('opacity-0', 'translate-y-10');
+                    tagsBar.classList.add('opacity-100', 'translate-y-0');
+                    tagsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        if (tagsBar) tagsObserver.observe(tagsBar);
+
+        // 3. Scroll Trigger for Project h1.png & h2.png Running Horses
+        const projectCard = document.getElementById('project-card-container');
+        const h1Horse = document.getElementById('h1-horse-container');
+        const h2Horse = document.getElementById('h2-horse-container');
+
+        const projectObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (h1Horse) {
+                        h1Horse.classList.remove('opacity-0');
+                        h1Horse.classList.add('horse-anim-left');
+                    }
+                    if (h2Horse) {
+                        h2Horse.classList.remove('opacity-0');
+                        h2Horse.classList.add('horse-anim-right');
+                    }
+                    projectObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        if (projectCard) projectObserver.observe(projectCard);
+
+        // 4. Traveler 地标图片悬浮轮播功能 (Hover Image Slideshow)
+        document.querySelectorAll('#interactive-travel-map .group\\/pin').forEach(pin => {
+            const imgElement = pin.querySelector('img');
+            const rawImages = pin.getAttribute('data-images');
+            if (!imgElement || !rawImages) return;
+
+            let images = [];
+            try {
+                images = JSON.parse(rawImages);
+            } catch (e) {
+                return;
+            }
+
+            if (!Array.isArray(images) || images.length <= 1) return;
+
+            let intervalId = null;
+            let currentIndex = 0;
+
+            pin.addEventListener('mouseenter', () => {
+                intervalId = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % images.length;
+                    imgElement.style.opacity = '0';
+                    setTimeout(() => {
+                        imgElement.src = images[currentIndex];
+                        imgElement.style.opacity = '1';
+                    }, 200);
+                }, 1500);
+            });
+
+            pin.addEventListener('mouseleave', () => {
+                if (intervalId) {
+                    clearInterval(intervalId);
+                    intervalId = null;
+                }
+                currentIndex = 0;
+                imgElement.src = images[0];
+                imgElement.style.opacity = '1';
+            });
+        });
+
+        // Initialize typewriter after page renders
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(runTypewriter, 300);
+        });
+    </script>
+</body>
+</html>
